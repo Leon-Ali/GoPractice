@@ -21,30 +21,23 @@ func main() {
 			f.Close()
 		}
 	}
-	// for fName, inMp := range counts {
-	// 	if n > 1 {
-	// 		fmt.Printf("%d\t%s\n", n, line)
-	// 	}
-	// 	cnt := inMp[someTxt]
-	//     fmt.Printf("%s\t%d\t%s\n", fName, cnt, someTxt)
-	// }
+	for fName, inMp := range counts {
+		for line, n := range inMp {
+			if n > 1 {
+				fmt.Printf("%s\t%d\t%s\n", fName, n, line)
+			}
+		}
+		
+	}
 
 }
 
 func countLines(f *os.File, counts map[string]map[string]int, fileName string) {
 	input := bufio.NewScanner(f)
+	innerMap := make(map[string]int)
 	for input.Scan() {
-		innerMap := make(map[string]int)
 		innerMap[input.Text()]++
-		counts[fileName] = innerMap
-		
-	}
-	for fName, inMp := range counts {
-		fmt.Println(inMp, fName)
-	    // cnt := inMp[someTxt]
-	    //fmt.Printf("%s\t%d\t%s\n", fName, cnt, someTxt)
-	    
-	
+		counts[fileName] = innerMap	
 	}
 	
 }
