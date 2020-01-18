@@ -26,5 +26,6 @@ func main() {
 			os.Exit(1)
 		}
 		fmt.Printf("%s", b)
+		fmt.Printf("HTTP status code=%d and error=%s\n", resp.StatusCode, http.StatusText(resp.StatusCode))
 	}
 }
