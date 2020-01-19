@@ -16,7 +16,9 @@ func main() {
 		go fetch(url, ch) // start a goroutine
 	}
 	for range os.Args[1:] {
-		fmt.Println(<-ch) // receive from channel ch
+		chData := <-ch // receive from channel ch
+		fmt.Println(chData) 
+		ioutil.WriteFile("fetchall_output.txt", []byte(chData), 0644)
 	}
 	fmt.Printf("%.2fs elapsed\n", time.Since(start).Seconds())
 }
